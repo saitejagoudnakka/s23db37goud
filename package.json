@@ -1,5 +1,5 @@
 {
-  "name": "f23wa37goud",
+  "name": "f23wb37goud",
   "version": "0.0.0",
   "private": true,
   "scripts": {
@@ -8,16 +8,9 @@
   "dependencies": {
     "cookie-parser": "~1.4.4",
     "debug": "^4.3.4",
-    "dotenv": "^16.3.1",
     "express": "^4.18.2",
     "http-errors": "^2.0.0",
-    "mongodb": "^6.2.0",
-    "mongoose": "^8.0.0",
     "morgan": "^1.10.0",
     "pug": "^3.0.2"
-  },
-  "main": "app.js",
-  "author": "",
-  "license": "ISC",
-  "description": ""
+  }
 }

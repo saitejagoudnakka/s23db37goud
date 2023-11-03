@@ -1,0 +1,19 @@
+extends layout
+
+block content
+    h1= title
+    -
+        var Recipe  = [{"type": "Indian", "name": "Dosa", "price": 50},{"type": "Italian", "name": "Pasta", "price": 200},{"type": "chinese", "name": "noodles", "price": 150}]
+
+    div(class="container-fluid")
+        div(class="row")
+            each food, index in Recipe
+                div(class="col-sm-2" onclick =`buy(${index})`) #{food.type}, #{food.name}, #{food.price}Rs       
+                script.
+                 function buy(a)
+                 {
+                   alert(`You purchased Item ${a+1}`)
+                 }
+
+                    
+                    
