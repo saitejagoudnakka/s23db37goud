@@ -1,9 +1,6 @@
 var express = require('express');
+const recipe_controlers= require('../controllers/recipe');
 var router = express.Router();
-
-/* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('recipe', { title: 'Search Results recipe' });
-});
-
+/* GET costumes */
+router.get('/', recipe_controlers.recipe_view_all_Page );
 module.exports = router;

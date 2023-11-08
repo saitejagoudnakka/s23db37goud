@@ -10,7 +10,18 @@ exports.recipe_list =  async function(req, res) {
     res.send(`{"error": ${err}}`);
     }
     };
-    
+// VIEWS
+// Handle a show all view
+exports.recipe_view_all_Page = async function(req, res) {
+    try{
+    theCostumes = await recipe.find();
+    res.render('recipe', { title: 'Recipe Search Results', results: theCostumes });
+    }
+    catch(err){
+    res.status(500);
+    res.send(`{"error": ${err}}`);
+    }
+    };
 // for a specific recipe.
 exports.recipe_detail = function(req, res) {
 res.send('NOT IMPLEMENTED: recipe detail: ' + req.params.id);
