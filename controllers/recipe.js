@@ -27,9 +27,25 @@ exports.recipe_detail = function(req, res) {
 res.send('NOT IMPLEMENTED: recipe detail: ' + req.params.id);
 };
 // Handle recipe create on POST.
-exports.recipe_create_post = function(req, res) {
-res.send('NOT IMPLEMENTED: recipe create POST');
-};
+exports.recipe_create_post = async function(req, res) {
+    console.log(req.body)
+    let document = new recipe();
+    // We are looking for a body, since POST does not have query parameters.
+    // Even though bodies can be in many different formats, we will be picky
+    // and require that it be a json object
+    // {"costume_type":"goat", "cost":12, "size":"large"}
+    document.type = req.body.type;
+    document.taste = req.body.taste;
+    document.price = req.body.price;
+    try{
+    let result = await document.save();
+    res.send(result);
+    }
+    catch(err){
+    res.status(500);
+    res.send(`{"error": ${err}}`);
+    }
+    };
 // Handle recipe delete form on DELETE.
 exports.recipe_delete = function(req, res) {
 res.send('NOT IMPLEMENTED: recipe delete DELETE ' + req.params.id);
