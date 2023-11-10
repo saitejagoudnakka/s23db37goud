@@ -16,20 +16,22 @@ db.on('error', console.error.bind(console, 'MongoDB connectionerror:'));
 db.once("open", function(){
 console.log("Connection to DB succeeded")});
 // We can seed the collection if needed on server start
-async function recreateDB(){
-// Delete everything
-await Recipe.deleteMany();
-let instance1 = new
-Recipe({type:"Indian", taste:'Sweet',
-price:150});
-instance1.save().then(doc=>{
-console.log("First object saved")}
-).catch(err=>{
-console.error(err)
-});
-}
-let reseed = true;
-if (reseed) {recreateDB();}
+// async function recreateDB(){
+// // Delete everything
+// await Recipe.deleteMany();
+// let instance1 = new Recipe({type:"Indian", taste:'Sweet',price:150});
+// let instance2 = new Recipe({type:"Indian", taste:'hot',price:250});
+// let instance3 = new Recipe({type:"Italian", taste:'spicy',price:200});
+// instance2.save();
+// instance3.save();
+// instance1.save().then(doc=>{
+// console.log(" objects saved")}
+// ).catch(err=>{
+// console.error(err)
+// });
+// }
+// let reseed = true;
+// if (reseed) {recreateDB();}
 
 
 var indexRouter = require('./routes/index');

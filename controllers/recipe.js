@@ -23,9 +23,17 @@ exports.recipe_view_all_Page = async function(req, res) {
     }
     };
 // for a specific recipe.
-exports.recipe_detail = function(req, res) {
-res.send('NOT IMPLEMENTED: recipe detail: ' + req.params.id);
-};
+exports.recipe_detail = async function(req, res) {
+    console.log("detail" + req.params.id)
+    try {
+    result = await recipe.findById( req.params.id)
+    res.send(result)
+    } catch (error) {
+    res.status(500)
+    res.send(`{"error": document for id ${req.params.id} not found`);
+    }
+    };
+    
 // Handle recipe create on POST.
 exports.recipe_create_post = async function(req, res) {
     console.log(req.body)
@@ -51,6 +59,22 @@ exports.recipe_delete = function(req, res) {
 res.send('NOT IMPLEMENTED: recipe delete DELETE ' + req.params.id);
 };
 // Handle recipe update form on PUT.
-exports.recipe_update_put = function(req, res) {
-res.send('NOT IMPLEMENTED: recipe update PUT' + req.params.id);
-};
+exports.recipe_update_put = async function(req, res) {
+    console.log(`update on id ${req.params.id} with body
+    ${JSON.stringify(req.body)}`)
+    try {
+    let toUpdate = await recipe.findById( req.params.id)
+    // Do updates of properties
+    if(req.body.type)
+    toUpdate.type = req.body.type;
+    if(req.body.taste) toUpdate.taste = req.body.taste;
+    if(req.body.price) toUpdate.price = req.body.price;
+    let result = await toUpdate.save();
+    console.log("Sucess " + result)
+    res.send(result)
+    } catch (err) {
+    res.status(500)
+    res.send(`{"error": ${err}: Update for id ${req.params.id}
+    failed`);
+    }
+    };
