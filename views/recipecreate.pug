@@ -1,0 +1,39 @@
+extends layout
+
+block content
+  h1= title
+  form#recipeForm(action="/resource/recipe", method="POST")
+    div.form-group
+      label(for='type') Recipe type
+      input#recipe_type(type='text', name='type')
+    div.form-group
+      label(for='taste') Recipe taste
+      input#recipe_taste(type='text', name='taste')
+    div.form-group
+      label(for='price') Recipe price
+      input#recipe_price(type='number', name='price')
+    input(type="submit")
+    script.
+      document.getElementById('recipeForm').addEventListener('submit', (event) => {
+        event.preventDefault();
+        // TODO: Show a user that the form is being submitted (e.g., loading spinner)
+        fetch(event.target.action, {
+          method: 'POST',
+          body: new URLSearchParams(new FormData(event.target))
+        })
+        .then((resp) => {
+          if (!resp.ok) {
+            throw new Error('Network response was not ok');
+          }
+          return resp.json();
+        })
+        .then((body) => {
+          alert("Save succeeded");
+          // TODO: Handle the response body as needed
+        })
+        .catch((error) => {
+          console.error('Error:', error);
+          alert("Save failed: " + error.message);
+          // TODO: Handle the error appropriately
+        });
+      });

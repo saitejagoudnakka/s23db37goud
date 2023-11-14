@@ -1,0 +1,21 @@
+extends layout
+
+block content
+  h1= title
+  - let recipeid = toShow._id
+  - let type = toShow.type
+  - let taste = toShow.taste
+  - let price = toShow.price
+
+  div
+    div.row
+      div(class='recipeAttr mr-3') recipe ID is:
+        div #{recipeid}
+    div.row
+      div(class='recipeAttr mr-3') recipe Type is:
+        div #{type}
+    div.row
+      div(class='recipeAttr mr-3') recipe Size is:
+        div #{taste}
+    div.row
+      div(class='recipeAttr mr-3') recipe Cost
