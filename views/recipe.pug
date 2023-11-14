@@ -1,19 +1,57 @@
+//- extends layout
+
+//- block content
+//-     h1= title
+//-     -
+//-         var Recipe  = [{"type": "Indian", "name": "Dosa", "price": 50},{"type": "Italian", "name": "Pasta", "price": 200},{"type": "chinese", "name": "noodles", "price": 150}]
+
+//-     div(class="container-fluid")
+//-         div(class="row")
+//-             each food, index in results
+//-                 div(class="col-sm-2" onclick =`buy(${index})`) #{food.type}, #{food.taste}, #{food.price}Rs       
+//-                 script.
+//-                  function buy(a)
+//-                  {
+//-                    alert(`You purchased Item ${a+1}`)
+//-                  }
+
 extends layout
 
 block content
-    h1= title
-    -
-        var Recipe  = [{"type": "Indian", "name": "Dosa", "price": 50},{"type": "Italian", "name": "Pasta", "price": 200},{"type": "chinese", "name": "noodles", "price": 150}]
+  h1= title
 
-    div(class="container-fluid")
-        div(class="row")
-            each food, index in results
-                div(class="col-sm-2" onclick =`buy(${index})`) #{food.type}, #{food.taste}, #{food.price}Rs       
-                script.
-                 function buy(a)
-                 {
-                   alert(`You purchased Item ${a+1}`)
-                 }
+  - var Recipe 
+  // Include Bootstrap link in the head section
+  link(rel='stylesheet', href='https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css')
 
-                    
-                    
+  style.
+    .card-custom {
+      background-color: #f8f9fa;
+    }
+    .title-color {
+      color: #007bff !important;
+    }
+    .type-color {
+      color: #28a745 !important;
+    }
+    .taste-color {
+      color: #17a2b8 !important;
+    }
+    .price-color {
+      color: #dc3545 !important;
+    }
+
+  div.container-fluid
+    div.row
+      each food, index in results
+        div.col-sm-4.mb-3(onclick=`buy(${index})`, style='cursor: pointer;')
+          div.card <span class='card-custom'>
+            div.card-body
+              
+              p.card-text Type: <span class='type-color' >#{food.type}</span>
+              p.card-text Taste: <span class='taste-color'>#{food.taste}</span>
+              p.card-text Price: <span class='price-color'>#{food.price} Rs</span></span>
+              script.
+                function buy(a) {
+                  alert(`You purchased Item ${a + 1}`);
+                }

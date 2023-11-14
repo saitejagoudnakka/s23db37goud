@@ -5,32 +5,32 @@ block content
   if (toShow == null)
     h2 No instance to delete
   else
-    - let costumeid = toShow._id
+    - let recipeid = toShow._id
     - let type = toShow.type
     - let taste = toShow.taste
     - let price = toShow.price
-    - let actionid = "/resource/recipe/" + costumeid
+    - let actionid = "/resource/recipe/" + recipeid
     script.
       let actionid = "#{actionid}"
     div
       div.row
-        div(class='costumeAttr mr-3') Costume ID is:
-        div #{costumeid}
+        div(class='recipeAttr mr-3') recipe ID is:
+        div #{recipeid}
       div.row
-        div(class='costumeAttr mr-3') Costume Type is:
+        div(class='recipeAttr mr-3') recipe Type is:
         div #{type}
       div.row
-        div(class='costumeAttr mr-3') Costume taste is:
+        div(class='recipeAttr mr-3') recipe taste is:
         div #{taste}
       div.row
-        div(class='costumeAttr mr-3') Costume recipe is:
+        div(class='recipeAttr mr-3') recipe recipe is:
         div #{price}
       button(class="btn btn-danger m-2" onclick="deleteOnid()") Delete
       button(class="btn btn-secondary m-2" onclick="cancel()") Cancel
     script.
       function cancel() {
-        // Go back to the home page for the costume collection
-        window.location.href='/costumes'
+        // Go back to the home page for the recipe collection
+        window.location.href='/recipes'
       }
     script.
       function deleteOnid() {
@@ -42,7 +42,7 @@ block content
           return resp.json(); // or resp.text() or whatever the server sends
         }).then((body) => {
           alert("Delete succeeded")
-          window.location.href='/costumes'
+          window.location.href='/recipes'
           // TODO handle body
         }).catch((error) => {
           // TODO handle error
