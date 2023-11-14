@@ -1,0 +1,43 @@
+extends layout
+
+block content
+  h1= title
+  - let recipeid = toShow._id
+  - let type = toShow.type
+  - let taste = toShow.taste
+  - let price = toShow.price
+  div.row(class='mb-2')
+    div.mr-1 ID is
+    div #{recipeid}
+  - let actionid = "/resource/recipe/" + recipeid
+  form(id='recipeForm', action= actionid, method="PUT")
+    div.form-group
+      label.recipeAttr(for='type') recipe type
+      input#type(type='text' name='type', value= type )
+    div.form-group
+      label.recipeAttr(for='taste') recipe taste
+      input#taste(type='text' name='taste', value= taste )
+    div.form-group
+      label.recipeAttr(for='price') recipe price
+      input#price(type='number' name='price', value= price )
+    input(type="submit")
+    script.
+      document.forms['recipeForm'].addEventListener('submit', (event) => {
+        event.preventDefault();
+        // TODO do something here to show user that form is being submitted
+        fetch(event.target.action, {
+          method: 'PUT',
+          body: new URLSearchParams(new FormData(event.target)) // event.target is the form
+        })
+        .then((resp) => {
+          return resp.json(); // or resp.text() or whatever the server sends
+        })
+        .then((body) => {
+          alert("Update succeeded");
+          // TODO handle body
+        })
+        .catch((error) => {
+          // TODO handle error
+          alert("Update failed " + error);
+        });
+      });
