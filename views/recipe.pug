@@ -12,7 +12,7 @@
 //-                 script.
 //-                  function buy(a)
 //-                  {
-//-                    alert(`You purchased Item ${a+1}`)
+//-                    alert(`You purchased food ${a+1}`)
 //-                  }
 
 extends layout
@@ -51,7 +51,13 @@ block content
               p.card-text Type: <span class='type-color' >#{food.type}</span>
               p.card-text Taste: <span class='taste-color'>#{food.taste}</span>
               p.card-text Price: <span class='price-color'>#{food.price} Rs</span></span>
+              - let destination = `dispatch(\"/recipe/update?id=${food._id}\")`
+                div(class="row-sm-2", class="m-1") food #{food.type}(#{food.taste}) is #{food.price}
+                button.btn( class="btn-primary ml-1", onclick= destination) Update
               script.
-                function buy(a) {
-                  alert(`You purchased Item ${a + 1}`);
+                function buy(a) {[]
+                  alert(`You purchased food ${a + 1}`);
+                }
+                function dispatch(path){
+                window.location.href=path
                 }
