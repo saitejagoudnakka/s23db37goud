@@ -1,12 +1,15 @@
-var express = require('express');
-var router = express.Router();
-
-/* GET home page. */
-router.get('/', function (req, res, next) {
-  res.render('index', { title: 'Express' });
-});
-var passport = require('passport');
+// var express = require('express');
 // var router = express.Router();
+/* GET home page. */
+// router.get('/', function (req, res, next) {
+//   res.render('index', { title: 'Express' });
+// });
+// var passport = require('passport');
+// var router = express.Router();
+// var Account = require('../models/account');
+var express = require('express');
+var passport = require('passport');
+var router = express.Router();
 var Account = require('../models/account');
 router.get('/', function (req, res) {
   res.render('index', { title: 'recipe App', user: req.user });
