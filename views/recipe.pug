@@ -54,10 +54,12 @@ block content
               - let destination = `dispatch(\"/recipe/update?id=${food._id}\")`
                 div(class="row-sm-2", class="m-1") food #{food.type}(#{food.taste}) is #{food.price}
                 button.btn( class="btn-primary ml-1", onclick= destination) Update
+                a(class="btn btn-danger" href=`/recipe/delete?id=${food._id}`) Delete
+                a(class="btn btn-dark" href=`/recipe/detail?id=${food._id}`) Details
               script.
                 function buy(a) {[]
                   alert(`You purchased food ${a + 1}`);
                 }
-                function dispatch(path){
+                function dispatch(path){    
                 window.location.href=path
                 }
