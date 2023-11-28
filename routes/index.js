@@ -57,7 +57,7 @@ router.get('/login', function (req, res) {
   res.render('login', { title: 'recipe App Login', user: req.user });
 });
 router.post('/login', passport.authenticate('local'), function (req, res) {
-  if (req.session.returnTo)    //code changes here for Authentication purpose                                               //code changes here for Authentication purpose
+  if (req.session.returnTo)    //code changes here for Authentication purpose                     
   res.redirect(req.session.returnTo);
   res.redirect('/');
 });
