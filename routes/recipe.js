@@ -12,11 +12,11 @@ res.redirect("/login");
 /* GET recipe */
 router.get('/', recipe_controlers.recipe_view_all_Page );
 /* GET detail recipe page */
-router.get('/detail', recipe_controlers.recipe_view_one_Page);
+router.get('/detail',secured, recipe_controlers.recipe_view_one_Page);
 /* GET create recipe page */
-router.get('/create', recipe_controlers.recipe_create_Page);
+router.get('/create',secured, recipe_controlers.recipe_create_Page);
 /* GET create update page */
 router.get('/update',secured, recipe_controlers.recipe_update_Page);
 /* GET delete recipe page */
-router.get('/delete', recipe_controlers.recipe_delete_Page);
+router.get('/delete',secured, recipe_controlers.recipe_delete_Page);
 module.exports = router;
